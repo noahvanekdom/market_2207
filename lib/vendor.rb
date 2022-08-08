@@ -12,4 +12,12 @@ class Vendor
     def check_stock(item)
         @inventory[item]
     end
+
+    def potential_revenue
+        revenue_array = []
+        @inventory.each do |item, quantity|
+            revenue_array << (item.price * quantity)
+        end
+        revenue_array.sum
+    end
 end
