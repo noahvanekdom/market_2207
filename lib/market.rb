@@ -20,7 +20,7 @@ class Market
     end
 
 
-    def total_item_stocks
+    def total_inventory
         total_item_hash = Hash.new(0)
         @vendors.each do |vendor|
             vendor.inventory.each do |item, quantity|
@@ -32,7 +32,11 @@ class Market
 
     def overstocked_items
         total_item_stocks.select do |item, quantity|
-            quantity > 50
+            quantity > 50 ## && vendors.count > 1
         end
+    end
+
+    def sorted_item_list
+        ##vendors.inventory.keys then a .uniq and a .sort_by -- potentially
     end
 end
