@@ -44,4 +44,9 @@ describe Vendor do
             expect(vendor.inventory).to eq({item1 => 55, item2 => 12})
         end
     end
+
+    describe 'potential_revenue' do
+        it 'returns the value of the sum of items multiplied by their quantities' do
+        end
+    end
 end
