@@ -21,10 +21,11 @@ class Market
 
 
     def total_inventory
-        total_item_hash = Hash.new(0)
+        total_item_hash = Hash.new {|hash, key| hash[key] = {quantity: 0, vendors: []}}
         @vendors.each do |vendor|
             vendor.inventory.each do |item, quantity|
-                total_item_hash[item] += quantity
+                total_item_hash[item][:quantity] += quantity
+                total_item_hash[item][:vendors] << vendor
             end
         end
         total_item_hash
@@ -32,7 +33,8 @@ class Market
 
     def overstocked_items
         total_inventory.select do |item, quantity|
-            quantity > 50 ## && vendors.count > 1
+            require 'pry'; binding.pry
+            quantity > 50 && vendors.count > 1
         end
     end
 
