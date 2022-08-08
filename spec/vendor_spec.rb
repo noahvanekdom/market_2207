@@ -4,6 +4,7 @@ require './lib/vendor'
 describe Vendor do
     let(:item1) { Item.new({name: 'Peach', price: "$0.75"}) }
     let(:item2) { Item.new({name: 'Tomato', price: '$0.50'}) }
+    let(:vendor) { Vendor.new("Rocky Mountain Fresh") }
 
     describe 'initialize' do
         it 'has a name' do
@@ -11,7 +12,7 @@ describe Vendor do
         end
 
         it 'has an empty hash for storing inventory' do
-            expect(vendor.inventory).to eq {}
+            expect(vendor.inventory).to eq({})
         end
     end
 
@@ -34,7 +35,7 @@ describe Vendor do
         end
 
         it 'changes the value of check_stock for the item' do
-            expect(vendor.heck_stock(item1)).to eq 30
+            expect(vendor.check_stock(item1)).to eq 30
         end
 
         it 'can do so when there is existing inventory' do
