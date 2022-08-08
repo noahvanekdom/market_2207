@@ -31,7 +31,7 @@ class Market
     end
 
     def overstocked_items
-        total_item_stocks.select do |item, quantity|
+        total_inventory.select do |item, quantity|
             quantity > 50 ## && vendors.count > 1
         end
     end
