@@ -72,7 +72,7 @@ describe Market do
             market.add_vendor(vendor2)
             market.add_vendor(vendor3)
         end
-        xit 'returns a hash where the keys are items, and the values are a nested hash' do
+        it 'returns a hash where the keys are items, and the values are a nested hash' do
             vendor3.stock(item3, 10)
             expect(market.total_inventory).to eq({
                 item1 => {
