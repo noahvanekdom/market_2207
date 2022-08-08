@@ -32,13 +32,14 @@ class Market
     end
 
     def overstocked_items
-        total_inventory.select do |item, quantity|
-            require 'pry'; binding.pry
-            quantity > 50 && vendors.count > 1
+        total_inventory.keys.select do |item|
+          total_inventory[item][:quantity] > 50 && total_inventory[item][:vendors].length > 1
         end
     end
 
     def sorted_item_list
-        ##vendors.inventory.keys then a .uniq and a .sort_by -- potentially
+        total_inventory.keys.map do |inventory_item|
+            inventory_item.name
+        end.sort!
     end
 end

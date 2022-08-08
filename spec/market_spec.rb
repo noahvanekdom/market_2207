@@ -74,7 +74,23 @@ describe Market do
         end
         xit 'returns a hash where the keys are items, and the values are a nested hash' do
             vendor3.stock(item3, 10)
-            expect(market.total_inventory).to eq({})
+            expect(market.total_inventory).to eq({
+                item1 => {
+                    quantity: 100,
+                    vendors: [vendor1]
+                         },
+                item2 => {
+                    quantity: 7,
+                    vendors: [vendor1, vendor2]
+                         },
+                item3 => {
+                    quantity: 50,
+                    vendors: [vendor2]
+                        },
+                item4 => {
+                    quantity: 35,
+                    vendors: [vendor2]
+                        } })
         end
     end
 
@@ -85,7 +101,7 @@ describe Market do
             market.add_vendor(vendor3)
         end
         it 'returns an array of all overstocked items (vendors > 1, total quantity > 50)' do
-            expect(market.overstocked_items).to eq item1
+            expect(market.overstocked_items).to eq([item1])
         end
     end
 
@@ -95,7 +111,7 @@ describe Market do
             market.add_vendor(vendor2)
             market.add_vendor(vendor3)
         end
-        xit 'returns an array of items sorted alphabetically' do
+        it 'returns an array of items sorted alphabetically' do
             expect(market.sorted_item_list).to eq ["Banana Nice Cream", "Peach", "Peach-Raspberry Nice Cream", "Tomato"]
         end
     end
