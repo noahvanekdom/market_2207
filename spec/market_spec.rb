@@ -30,7 +30,7 @@ describe Market do
         end
     end
 
-    describe 'add_vendor'
+    describe 'add_vendor' do
         before do
             market.add_vendor(vendor1)
             market.add_vendor(vendor2)
@@ -55,6 +55,14 @@ describe Market do
 
         it 'returns a list of vendors that sell the given item' do
             expect(market.vendors_that_sell(item1)).to eq [vendor1, vendor3]
+        end
+    end
+
+    describe 'vendor #potential_revenue' do
+        it 'returns the amount a vendor would make by selling all their items' do
+            expect(vendor1.potential_revenue).to eq 29.75
+            expect(vendor2.potential_revenue).to eq 345.00
+            expect(vendor3.potential_revenue).to eq 48.75
         end
     end
 end
